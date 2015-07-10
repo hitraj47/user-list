@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -20,23 +21,19 @@ import org.json.JSONArray;
 public class MainActivity extends ActionBarActivity implements MainFragment.Callback {
 
     private JSONArray userArray;
+    private UserListFragment userListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            if (userArray == null) {
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, new MainFragment())
-                        .commit();
-            } else {
-                getSupportFragmentManager().beginTransaction()
-                        .add(R.id.container, new UserListFragment())
-                        .commit();
-            }
-
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container, new MainFragment())
+                    .commit();
         }
+
+        userListFragment = new UserListFragment();
     }
 
 
@@ -92,7 +89,8 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
      * Display the list fragment showing the list of users
      */
     public void displayListFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, new UserListFragment()).commit();
+        userListFragment.updateData();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, userListFragment).commit();
     }
 
     /**
@@ -102,6 +100,10 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
     @Override
     public void onRefreshButtonClicked(View view) {
         getUserList();
+    }
+
+    public JSONArray getJsonArray() {
+        return userArray;
     }
 
 }
