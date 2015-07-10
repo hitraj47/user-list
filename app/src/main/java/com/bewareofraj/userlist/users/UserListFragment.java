@@ -30,7 +30,9 @@ public class UserListFragment extends Fragment {
      * Used for when the array is updated
      */
     public void updateData() {
-        adapter.notifyDataSetChanged();
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
     }
 
     @Override
