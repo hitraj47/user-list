@@ -16,9 +16,12 @@ import com.bewareofraj.userlist.users.UserListFragment;
 import com.bewareofraj.userlist.util.MyApplication;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 
 public class MainActivity extends ActionBarActivity implements MainFragment.Callback {
+
+    private static final String BUNDLE_JSON_ARRAY = "json_array";
 
     private JSONArray userArray;
     private UserListFragment userListFragment;
@@ -31,9 +34,22 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.container, new MainFragment())
                     .commit();
+            userListFragment = new UserListFragment();
+        } else {
+            try {
+                userArray = new JSONArray(savedInstanceState.getSerializable(BUNDLE_JSON_ARRAY));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            userListFragment.updateData();
         }
 
-        userListFragment = new UserListFragment();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable(BUNDLE_JSON_ARRAY, getJsonArray().toString());
     }
 
 
