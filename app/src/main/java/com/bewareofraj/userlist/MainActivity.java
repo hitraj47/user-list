@@ -3,11 +3,21 @@ package com.bewareofraj.userlist;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.bewareofraj.userlist.util.MyApplication;
+
+import org.json.JSONArray;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -44,6 +54,31 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Method to get list of users
+     */
+    public void getUserList() {
+        String url = "http://jsonplaceholder.typicode.com/users";
+        final String requestTag = "get_user_list";
+
+        Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                Log.d("userlist", response.toString());
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e(requestTag, "Error getting user list: " + error.getMessage());
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, responseListener, errorListener);
+        MyApplication.getInstance().addToRequestQueue(request, requestTag);
     }
 
     /**
