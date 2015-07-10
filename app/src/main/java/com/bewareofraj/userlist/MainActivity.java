@@ -2,7 +2,6 @@ package com.bewareofraj.userlist;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.bewareofraj.userlist.users.UserListFragment;
 import com.bewareofraj.userlist.util.MyApplication;
 
 import org.json.JSONArray;
@@ -19,14 +19,23 @@ import org.json.JSONArray;
 
 public class MainActivity extends ActionBarActivity implements MainFragment.Callback {
 
+    private JSONArray userArray;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new MainFragment())
-                    .commit();
+            if (userArray == null) {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.container, new MainFragment())
+                        .commit();
+            } else {
+                getSupportFragmentManager().beginTransaction()
+                        .add(R.id.container, new UserListFragment())
+                        .commit();
+            }
+
         }
     }
 
@@ -63,7 +72,8 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
         Response.Listener<JSONArray> responseListener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("userlist", response.toString());
+                userArray = response;
+                displayListFragment();
             }
         };
 
@@ -76,6 +86,13 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
 
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, responseListener, errorListener);
         MyApplication.getInstance().addToRequestQueue(request, requestTag);
+    }
+
+    /**
+     * Display the list fragment showing the list of users
+     */
+    public void displayListFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, new UserListFragment()).commit();
     }
 
     /**
