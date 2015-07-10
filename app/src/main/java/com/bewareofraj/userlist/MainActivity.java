@@ -1,5 +1,6 @@
 package com.bewareofraj.userlist;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -21,25 +22,15 @@ import com.bewareofraj.userlist.util.MyApplication;
 import org.json.JSONArray;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends ActionBarActivity implements MainFragment.Callback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (savedInstanceState == null) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-
-            Button btnGetList = (Button) fragment.getView().findViewById(R.id.btn_get_list);
-            btnGetList.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    getUserList();
-                }
-            });
-
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
+                    .add(R.id.container, new MainFragment())
                     .commit();
         }
     }
@@ -92,18 +83,9 @@ public class MainActivity extends ActionBarActivity {
         MyApplication.getInstance().addToRequestQueue(request, requestTag);
     }
 
-    /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
+    @Override
+    public void onRefreshButtonClicked(Button button) {
 
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_main, container, false);
-        }
     }
+
 }
