@@ -5,5 +5,7 @@
     <string name="action_refresh">Refresh List</string>
     <string name="btn_get_list">Get List</string>
     <string name="dialog_retrieving_info">Retrieving info&#8230;</string>
+    <string name="title_activity_user_info">User Info</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
