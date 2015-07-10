@@ -21,6 +21,8 @@ import org.json.JSONException;
  */
 public class UserListFragment extends Fragment {
 
+    private static final String BUNDLE_JSON_ARRAY = "json_array";
+
     private JsonAdapter adapter;
 
     public UserListFragment() {
@@ -45,7 +47,7 @@ public class UserListFragment extends Fragment {
 
         if (savedInstanceState != null) {
             try {
-                array = new JSONArray(savedInstanceState.getString("json_array"));
+                array = new JSONArray(savedInstanceState.getString(BUNDLE_JSON_ARRAY));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -63,7 +65,7 @@ public class UserListFragment extends Fragment {
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("json_array", adapter.getJsonArray().toString());
+        outState.putString(BUNDLE_JSON_ARRAY, adapter.getJsonArray().toString());
     }
 
 

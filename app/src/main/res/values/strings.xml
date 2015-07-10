@@ -4,7 +4,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_refresh">Refresh List</string>
     <string name="btn_get_list">Get List</string>
+    <string name="dialog_retrieving_info">Retrieving info&#8230;</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
