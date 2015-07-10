@@ -44,14 +44,35 @@ public class MyApplication extends Application {
         return requestQueue;
     }
 
+    /**
+     * Add a request to the queue with the specified tag
+     * @param request
+     * @param tag
+     * @param <T>
+     */
     public <T> void addToRequestQueue(Request<T> request, String tag) {
         // set default tag if it is empty
         request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
         getRequestQueue().add(request);
     }
 
+    /**
+     * Add a request to the queue with the default tag
+     * @param request
+     * @param <T>
+     */
     public <T> void addToRequestQueue(Request<T> request) {
         request.setTag(TAG);
         getRequestQueue().add(request);
+    }
+
+    /**
+     * Cancel a request with the specified tag
+     * @param tag
+     */
+    public void cancelPendingRequest(Object tag) {
+        if (requestQueue != null) {
+            requestQueue.cancelAll(tag);
+        }
     }
 }
