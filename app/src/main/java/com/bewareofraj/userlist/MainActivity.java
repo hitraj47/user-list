@@ -83,8 +83,12 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
         MyApplication.getInstance().addToRequestQueue(request, requestTag);
     }
 
+    /**
+     * This method is called when the "Get List" button is clicked in the Main fragment
+     * @param view
+     */
     @Override
-    public void onRefreshButtonClicked(Button button) {
+    public void onRefreshButtonClicked(View view) {
 
     }
 
