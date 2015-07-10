@@ -7,5 +7,30 @@
     <string name="dialog_retrieving_info">Retrieving info&#8230;</string>
     <string name="title_activity_user_info">User Info</string>
     <string name="action_settings">Settings</string>
+    <string name="txt_name_label">Name</string>
+    <string name="txt_id_field">ID:</string>
+    <string name="id_placeholder">id</string>
+    <string name="txt_username_field">Username:</string>
+    <string name="username_placeholder">Username</string>
+    <string name="txt_email_field">E-mail:</string>
+    <string name="email_placeholder">E-mail</string>
+    <string name="txt_address">Address:</string>
+    <string name="street_placeholder">Street</string>
+    <string name="suite_placeholder">Suite</string>
+    <string name="cityzip_placeholder">City, Zip</string>
+    <string name="txt_geo_field">Geo:</string>
+    <string name="txt_lat_field">lat:</string>
+    <string name="lat_placeholder">lat coord</string>
+    <string name="txt_lng_field">lng:</string>
+    <string name="lng_placeholder">lng coord</string>
+    <string name="txt_phone_field">Phone:</string>
+    <string name="phone_placeholder">phone number</string>
+    <string name="txt_website_field">Website:</string>
+    <string name="website_placeholder">website</string>
+    <string name="txt_company_field">Company:</string>
+    <string name="txt_company_name_field">Name:</string>
+    <string name="company_name_placeholder">company name</string>
+    <string name="catchphrase_placeholder">catchphrase</string>
+    <string name="bs_placeholder">bs</string>
 
 </resources>
