@@ -36,12 +36,14 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
                     .commit();
             userListFragment = new UserListFragment();
         } else {
-            try {
-                userArray = new JSONArray(savedInstanceState.getSerializable(BUNDLE_JSON_ARRAY));
-            } catch (JSONException e) {
-                e.printStackTrace();
+            if (savedInstanceState.getSerializable(BUNDLE_JSON_ARRAY) != null) {
+                try {
+                    userArray = new JSONArray(savedInstanceState.getSerializable(BUNDLE_JSON_ARRAY));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                userListFragment.updateData();
             }
-            userListFragment.updateData();
         }
 
     }
@@ -49,7 +51,9 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable(BUNDLE_JSON_ARRAY, getJsonArray().toString());
+        if (userArray != null) {
+            outState.putSerializable(BUNDLE_JSON_ARRAY, userArray.toString());
+        }
     }
 
 
