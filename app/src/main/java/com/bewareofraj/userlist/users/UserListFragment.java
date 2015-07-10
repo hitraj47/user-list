@@ -13,6 +13,7 @@ import com.bewareofraj.userlist.R;
 import com.bewareofraj.userlist.util.JsonAdapter;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 
 /**
@@ -40,13 +41,29 @@ public class UserListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_user_list, container, false);
 
-        JSONArray array = ((MainActivity) getActivity()).getJsonArray();
+        JSONArray array = null;
+
+        if (savedInstanceState != null) {
+            try {
+                array = new JSONArray(savedInstanceState.getString("json_array"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        } else {
+            array = ((MainActivity) getActivity()).getJsonArray();
+        }
 
         ListView listView = (ListView) rootView.findViewById(R.id.user_list);
         adapter = new JsonAdapter(getActivity(), array);
         listView.setAdapter(adapter);
 
         return rootView;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("json_array", adapter.getJsonArray().toString());
     }
 
 

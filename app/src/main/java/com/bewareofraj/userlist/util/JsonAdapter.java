@@ -65,4 +65,8 @@ public class JsonAdapter extends BaseAdapter implements ListAdapter {
 
         return convertView;
     }
+
+    public JSONArray getJsonArray() {
+        return array;
+    }
 }
