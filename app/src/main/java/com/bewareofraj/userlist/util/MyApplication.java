@@ -1,11 +1,14 @@
 package com.bewareofraj.userlist.util;
 
 import android.app.Application;
+import android.text.TextUtils;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 /**
+ * Boiler plate singleton to user Volley
  * Created by raj on 7/10/15.
  */
 public class MyApplication extends Application {
@@ -20,8 +23,14 @@ public class MyApplication extends Application {
      * Just singleton things...
      * @return
      */
-    public static MyApplication getInstance() {
+    public static synchronized MyApplication getInstance() {
         return instance;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
     }
 
     /**
@@ -33,5 +42,16 @@ public class MyApplication extends Application {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
         return requestQueue;
+    }
+
+    public <T> void addToRequestQueue(Request<T> request, String tag) {
+        // set default tag if it is empty
+        request.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+        getRequestQueue().add(request);
+    }
+
+    public <T> void addToRequestQueue(Request<T> request) {
+        request.setTag(TAG);
+        getRequestQueue().add(request);
     }
 }
