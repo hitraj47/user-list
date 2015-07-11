@@ -55,7 +55,7 @@ public class UserInfoActivity extends ActionBarActivity {
         txtSuite.setText(addressObject.getString("suite"));
 
         TextView txtCityZip = (TextView) findViewById(R.id.txt_cityzip);
-        String cityZip = addressObject.getString("city") + ", " + addressObject.getString("zip");
+        String cityZip = addressObject.getString("city") + ", " + addressObject.getString("zipcode");
         txtCityZip.setText(cityZip);
 
         JSONObject geoObject = addressObject.getJSONObject("geo");
@@ -78,10 +78,10 @@ public class UserInfoActivity extends ActionBarActivity {
         txtCompanyName.setText(companyObject.getString("name"));
 
         TextView txtCatchphrase = (TextView) findViewById(R.id.txt_catchphrase);
-        txtCatchphrase.setText(companyObject.getString("catchphrase"));
+        txtCatchphrase.setText(companyObject.getString("catchPhrase"));
 
         TextView txtBs = (TextView) findViewById(R.id.txt_bs);
-        txtBs.setText(companyObject.getString("bs'"));
+        txtBs.setText(companyObject.getString("bs"));
     }
 
 }
