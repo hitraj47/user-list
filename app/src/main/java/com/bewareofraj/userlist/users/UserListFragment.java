@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.bewareofraj.userlist.MainActivity;
 import com.bewareofraj.userlist.R;
@@ -53,6 +54,7 @@ public class UserListFragment extends Fragment {
                 array = new JSONArray(savedInstanceState.getString(BUNDLE_JSON_ARRAY));
             } catch (JSONException e) {
                 e.printStackTrace();
+                Toast.makeText(getActivity(), "Error loading user list", Toast.LENGTH_LONG).show();
             }
         } else {
             array = ((MainActivity) getActivity()).getJsonArray();
