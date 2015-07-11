@@ -7,9 +7,13 @@ import android.view.MenuItem;
 
 import com.bewareofraj.userlist.R;
 
+import org.json.JSONObject;
+
 public class UserInfoActivity extends ActionBarActivity {
 
     public static final String EXTRA_JSON_OBJECT = "json_object";
+
+    private JSONObject userObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,26 +21,4 @@ public class UserInfoActivity extends ActionBarActivity {
         setContentView(R.layout.activity_user_info);
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_user_info, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
