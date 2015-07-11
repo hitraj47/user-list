@@ -13,8 +13,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+/**
+ * This activity displays the selected user info
+ */
 public class UserInfoActivity extends ActionBarActivity {
 
+    /**
+     * The intent extra key to get the json object string
+     */
     public static final String EXTRA_JSON_OBJECT = "json_object";
 
     private JSONObject userObject;

@@ -18,7 +18,9 @@ import com.bewareofraj.userlist.util.MyApplication;
 
 import org.json.JSONArray;
 
-
+/**
+ * The main screen
+ */
 public class MainActivity extends ActionBarActivity implements MainFragment.Callback {
 
     private JSONArray userArray;
@@ -58,7 +60,7 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
     }
 
     /**
-     * Method to get list of users
+     * Retrieve the list of users
      */
     public void getUserList() {
         String url = "http://jsonplaceholder.typicode.com/users";
@@ -112,6 +114,10 @@ public class MainActivity extends ActionBarActivity implements MainFragment.Call
         getUserList();
     }
 
+    /**
+     * Return the json array of users
+     * @return
+     */
     public JSONArray getJsonArray() {
         return userArray;
     }

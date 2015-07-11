@@ -13,13 +13,18 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
- * Created by raj on 7/10/15.
+ * Adapter used to display a json array in a listview
  */
 public class JsonAdapter extends BaseAdapter implements ListAdapter {
 
     private Activity activity;
     private JSONArray array;
 
+    /**
+     * Constructor
+     * @param activity
+     * @param array
+     */
     public JsonAdapter(Activity activity, JSONArray array) {
         this.activity = activity;
         this.array = array;
@@ -66,6 +71,10 @@ public class JsonAdapter extends BaseAdapter implements ListAdapter {
         return convertView;
     }
 
+    /**
+     * Return the json array associated with the adapter
+     * @return
+     */
     public JSONArray getJsonArray() {
         return array;
     }

@@ -8,11 +8,13 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Boiler plate singleton to user Volley
- * Created by raj on 7/10/15.
+ * Application singleton to manage Volley Requests
  */
 public class MyApplication extends Application {
 
+    /**
+     * Default tag for Volley requests
+     */
     public static final String TAG = MyApplication.class.getSimpleName();
 
     private RequestQueue requestQueue;
