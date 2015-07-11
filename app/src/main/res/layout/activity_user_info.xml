@@ -70,6 +70,7 @@ android:layout_height="match_parent" >
             android:textStyle="bold" />
 
         <TextView
+            android:autoLink="email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -179,6 +180,7 @@ android:layout_height="match_parent" >
             android:textStyle="bold" />
 
         <TextView
+            android:autoLink="phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -199,6 +201,7 @@ android:layout_height="match_parent" >
             android:textStyle="bold" />
 
         <TextView
+            android:autoLink="web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
