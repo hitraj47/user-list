@@ -52,7 +52,8 @@
         android:text="@string/username_placeholder"
         android:id="@+id/txt_username"
         android:layout_above="@+id/txt_email_field"
-        android:layout_toEndOf="@+id/txt_username_field" />
+        android:layout_toEndOf="@+id/txt_username_field"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -71,7 +72,8 @@
         android:text="@string/email_placeholder"
         android:id="@+id/txt_email"
         android:layout_toRightOf="@+id/txt_email_field"
-        android:layout_below="@+id/txt_username" />
+        android:layout_below="@+id/txt_username"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -138,7 +140,8 @@
         android:text="@string/lat_placeholder"
         android:id="@+id/txt_lat"
         android:layout_above="@+id/txt_phone_field"
-        android:layout_toEndOf="@+id/txt_lat_field" />
+        android:layout_toEndOf="@+id/txt_lat_field"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -157,7 +160,8 @@
         android:text="@string/lng_placeholder"
         android:id="@+id/txt_lng"
         android:layout_alignTop="@+id/txt_lng_field"
-        android:layout_toEndOf="@+id/txt_lng_field" />
+        android:layout_toEndOf="@+id/txt_lng_field"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -177,7 +181,8 @@
         android:text="@string/phone_placeholder"
         android:id="@+id/txt_phone"
         android:layout_alignTop="@+id/txt_phone_field"
-        android:layout_toEndOf="@+id/txt_name" />
+        android:layout_toRightOf="@+id/txt_phone_field"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -196,7 +201,8 @@
         android:text="@string/website_placeholder"
         android:id="@+id/txt_website"
         android:layout_alignTop="@+id/txt_web_site_field"
-        android:layout_toEndOf="@+id/txt_web_site_field" />
+        android:layout_toEndOf="@+id/txt_web_site_field"
+        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
