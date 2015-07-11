@@ -1,11 +1,13 @@
 package com.bewareofraj.userlist.users;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.bewareofraj.userlist.MainActivity;
@@ -14,10 +16,11 @@ import com.bewareofraj.userlist.util.JsonAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * This fragment is responsible for displaying the list of users
  */
 public class UserListFragment extends Fragment {
 
@@ -58,6 +61,15 @@ public class UserListFragment extends Fragment {
         ListView listView = (ListView) rootView.findViewById(R.id.user_list);
         adapter = new JsonAdapter(getActivity(), array);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                JSONObject object = adapter.getItem(position);
+                Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+                intent.putExtra(UserInfoActivity.EXTRA_JSON_OBJECT, object.toString());
+                startActivity(intent);
+            }
+        });
 
         return rootView;
     }

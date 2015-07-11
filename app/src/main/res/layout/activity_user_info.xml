@@ -137,8 +137,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/lat_placeholder"
         android:id="@+id/txt_lat"
-        android:layout_alignTop="@+id/txt_lat_field"
-        android:layout_toStartOf="@+id/txt_username" />
+        android:layout_above="@+id/txt_phone_field"
+        android:layout_toEndOf="@+id/txt_lat_field" />
 
     <TextView
         android:layout_width="wrap_content"

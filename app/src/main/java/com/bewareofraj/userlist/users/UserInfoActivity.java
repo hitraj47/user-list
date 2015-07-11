@@ -9,6 +9,8 @@ import com.bewareofraj.userlist.R;
 
 public class UserInfoActivity extends ActionBarActivity {
 
+    public static final String EXTRA_JSON_OBJECT = "json_object";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
