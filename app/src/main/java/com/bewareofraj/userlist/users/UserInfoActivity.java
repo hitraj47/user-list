@@ -33,6 +33,18 @@ public class UserInfoActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // make the up button do the same as back button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
     private void populateUi(JSONObject object) throws JSONException {
         TextView txtName = (TextView) findViewById(R.id.txt_name);
         txtName.setText(object.getString("name"));
