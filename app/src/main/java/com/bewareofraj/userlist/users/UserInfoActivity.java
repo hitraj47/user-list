@@ -31,7 +31,6 @@ public class UserInfoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
-
         try {
             user = new User(new JSONObject(getIntent().getStringExtra(EXTRA_JSON_OBJECT)));
             populateUi(user);
