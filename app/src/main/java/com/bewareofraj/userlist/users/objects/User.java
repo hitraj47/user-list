@@ -1,5 +1,8 @@
 package com.bewareofraj.userlist.users.objects;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * This object represents a User
  */
@@ -25,135 +28,150 @@ public class User {
         return id;
     }
 
-    public User setId(int id) {
+    public void setId(int id) {
         this.id = id;
-        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public User setName(String name) {
+    public void setName(String name) {
         this.name = name;
-        return this;
     }
 
     public String getUsername() {
         return username;
     }
 
-    public User setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
-        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public User setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
     public String getAddressStreet() {
         return addressStreet;
     }
 
-    public User setAddressStreet(String addressStreet) {
+    public void setAddressStreet(String addressStreet) {
         this.addressStreet = addressStreet;
-        return this;
     }
 
     public String getAddressSuite() {
         return addressSuite;
     }
 
-    public User setAddressSuite(String addressSuite) {
+    public void setAddressSuite(String addressSuite) {
         this.addressSuite = addressSuite;
-        return this;
     }
 
     public String getAddressCity() {
         return addressCity;
     }
 
-    public User setAddressCity(String addressCity) {
+    public void setAddressCity(String addressCity) {
         this.addressCity = addressCity;
-        return this;
     }
 
     public String getAddressZipcode() {
         return addressZipcode;
     }
 
-    public User setAddressZipcode(String addressZipcode) {
+    public void setAddressZipcode(String addressZipcode) {
         this.addressZipcode = addressZipcode;
-        return this;
     }
 
     public String getGeoLat() {
         return geoLat;
     }
 
-    public User setGeoLat(String geoLat) {
+    public void setGeoLat(String geoLat) {
         this.geoLat = geoLat;
-        return this;
     }
 
     public String getGeoLng() {
         return geoLng;
     }
 
-    public User setGeoLng(String geoLng) {
+    public void setGeoLng(String geoLng) {
         this.geoLng = geoLng;
-        return this;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public User setPhone(String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
-        return this;
     }
 
     public String getWebsite() {
         return website;
     }
 
-    public User setWebsite(String website) {
+    public void setWebsite(String website) {
         this.website = website;
-        return this;
     }
 
     public String getCompanyName() {
         return companyName;
     }
 
-    public User setCompanyName(String companyName) {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
-        return this;
     }
 
     public String getCompanyCatchphrase() {
         return companyCatchphrase;
     }
 
-    public User setCompanyCatchphrase(String companyCatchphrase) {
+    public void setCompanyCatchphrase(String companyCatchphrase) {
         this.companyCatchphrase = companyCatchphrase;
-        return this;
     }
 
     public String getCompanyBs() {
         return companyBs;
     }
 
-    public User setCompanyBs(String companyBs) {
+    public void setCompanyBs(String companyBs) {
         this.companyBs = companyBs;
-        return this;
+    }
+
+    /**
+     * This method parses a JSON Object and sets the fields to the User properties
+     * @param object
+     */
+    public void parseJsonObject(JSONObject object) throws JSONException {
+        setId(object.getInt("id"));
+        setName(object.getString("name"));
+        setUsername(object.getString("username"));
+        setEmail(object.getString("email"));
+
+        JSONObject addressObject = object.getJSONObject("address");
+        setAddressStreet(addressObject.getString("street"));
+        setAddressSuite(addressObject.getString("suite"));
+        setAddressCity(addressObject.getString("city"));
+        setAddressZipcode(addressObject.getString("zipcode"));
+
+        JSONObject geoObject = object.getJSONObject("geo");
+        setGeoLat(geoObject.getString("lat"));
+        setGeoLng(geoObject.getString("lng"));
+
+        setPhone(object.getString("phone"));
+        setWebsite(object.getString("website"));
+
+        JSONObject companyObject = object.getJSONObject("company");
+        setCompanyName(companyObject.getString("name"));
+        setCompanyCatchphrase(companyObject.getString("catchPhrase"));
+        setCompanyBs(companyObject.getString("bs"));
+
     }
 
 
