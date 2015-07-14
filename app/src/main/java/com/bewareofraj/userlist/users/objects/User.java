@@ -23,6 +23,12 @@ public class User {
     private String companyName;
     private String companyCatchphrase;
     private String companyBs;
+    private JSONObject userObject;
+
+    public User(JSONObject object) throws JSONException {
+        this.userObject = object;
+        parseJsonObject(object);
+    }
 
     public int getId() {
         return id;
@@ -149,6 +155,8 @@ public class User {
      * @param object
      */
     public void parseJsonObject(JSONObject object) throws JSONException {
+        this.userObject = object;
+
         setId(object.getInt("id"));
         setName(object.getString("name"));
         setUsername(object.getString("username"));
@@ -160,7 +168,7 @@ public class User {
         setAddressCity(addressObject.getString("city"));
         setAddressZipcode(addressObject.getString("zipcode"));
 
-        JSONObject geoObject = object.getJSONObject("geo");
+        JSONObject geoObject = addressObject.getJSONObject("geo");
         setGeoLat(geoObject.getString("lat"));
         setGeoLng(geoObject.getString("lng"));
 
@@ -171,9 +179,12 @@ public class User {
         setCompanyName(companyObject.getString("name"));
         setCompanyCatchphrase(companyObject.getString("catchPhrase"));
         setCompanyBs(companyObject.getString("bs"));
-
     }
 
+    @Override
+    public String toString() {
+        return this.userObject.toString();
+    }
 
 
 }

@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bewareofraj.userlist.R;
+import com.bewareofraj.userlist.users.objects.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,16 +24,17 @@ public class UserInfoActivity extends ActionBarActivity {
      */
     public static final String EXTRA_JSON_OBJECT = "json_object";
 
-    private JSONObject userObject;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
+
         try {
-            userObject = new JSONObject(getIntent().getStringExtra(EXTRA_JSON_OBJECT));
-            populateUi(userObject);
+            user = new User(new JSONObject(getIntent().getStringExtra(EXTRA_JSON_OBJECT)));
+            populateUi(user);
         } catch (JSONException e) {
             e.printStackTrace();
             Toast.makeText(this, "Error loading user info", Toast.LENGTH_LONG).show();
@@ -51,55 +53,49 @@ public class UserInfoActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void populateUi(JSONObject object) throws JSONException {
+    private void populateUi(User user) {
         TextView txtName = (TextView) findViewById(R.id.txt_name);
-        txtName.setText(object.getString("name"));
+        txtName.setText(user.getName());
 
         TextView txtId = (TextView) findViewById(R.id.txt_id_placeholder);
-        txtId.setText(object.getString("id"));
+        txtId.setText(Integer.toString(user.getId()));
 
         TextView txtUsername = (TextView) findViewById(R.id.txt_username);
-        txtUsername.setText(object.getString("username"));
+        txtUsername.setText(user.getUsername());
 
         TextView txtEmail = (TextView) findViewById(R.id.txt_email);
-        txtEmail.setText(object.getString("email"));
-
-        JSONObject addressObject = object.getJSONObject("address");
+        txtEmail.setText(user.getEmail());
 
         TextView txtStreet = (TextView) findViewById(R.id.txt_street);
-        txtStreet.setText(addressObject.getString("street"));
+        txtStreet.setText(user.getAddressStreet());
 
         TextView txtSuite = (TextView) findViewById(R.id.txt_suite);
-        txtSuite.setText(addressObject.getString("suite"));
+        txtSuite.setText(user.getAddressSuite());
 
         TextView txtCityZip = (TextView) findViewById(R.id.txt_cityzip);
-        String cityZip = addressObject.getString("city") + ", " + addressObject.getString("zipcode");
+        String cityZip = user.getAddressCity() + ", " + user.getAddressZipcode();
         txtCityZip.setText(cityZip);
 
-        JSONObject geoObject = addressObject.getJSONObject("geo");
-
         TextView txtLat = (TextView) findViewById(R.id.txt_lat);
-        txtLat.setText(geoObject.getString("lat"));
+        txtLat.setText(user.getGeoLat());
 
         TextView txtLng = (TextView) findViewById(R.id.txt_lng);
-        txtLng.setText(geoObject.getString("lng"));
+        txtLng.setText(user.getGeoLng());
 
         TextView txtPhone = (TextView) findViewById(R.id.txt_phone);
-        txtPhone.setText(object.getString("phone"));
+        txtPhone.setText(user.getPhone());
 
         TextView txtWebsite = (TextView) findViewById(R.id.txt_website);
-        txtWebsite.setText(object.getString("website"));
-
-        JSONObject companyObject = object.getJSONObject("company");
+        txtWebsite.setText(user.getWebsite());
 
         TextView txtCompanyName = (TextView) findViewById(R.id.txt_company_name);
-        txtCompanyName.setText(companyObject.getString("name"));
+        txtCompanyName.setText(user.getCompanyName());
 
         TextView txtCatchphrase = (TextView) findViewById(R.id.txt_catchphrase);
-        txtCatchphrase.setText(companyObject.getString("catchPhrase"));
+        txtCatchphrase.setText(user.getCompanyCatchphrase());
 
         TextView txtBs = (TextView) findViewById(R.id.txt_bs);
-        txtBs.setText(companyObject.getString("bs"));
+        txtBs.setText(user.getCompanyBs());
     }
 
 }
