@@ -8,15 +8,11 @@
 # Java class files
 *.class
 
-<<<<<<< HEAD
 # Local configuration file (sdk path, etc)
 local.properties
 
 # Log Files
 *.log
-
-# Secret API key file
-app/src/main/res/values/secret.xml
 
 # auto generated file
 Thumbs.db
